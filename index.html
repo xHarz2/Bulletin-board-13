@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дошка оголошень</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Vue 3 через CDN, без збірки -->
+    <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+
+    <header>
+        <h1>Дошка оголошень</h1>
+        <nav>
+            <a href="#/" data-link>Стрічка</a>
+            <a href="#/new" data-link class="btn-add">Нове оголошення</a>
+        </nav>
+    </header>
+
+    <!-- Контейнер SPA: сюди рендеряться всі "сторінки" застосунку -->
+    <main id="app"></main>
+
+    <aside id="ad-details">
+        <h2>Деталі оголошення</h2>
+        <p>Натисніть на заголовок оголошення в стрічці, щоб відкрити сторінку з його повним описом.</p>
+    </aside>
+
+    <footer>
+        <p>&copy; 2026 Майстренко З. Навчальний проєкт ФІОТ КПІ.</p>
+    </footer>
+
+</body>
+</html>

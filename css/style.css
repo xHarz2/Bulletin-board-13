@@ -1,0 +1,482 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #2D3748;
+    background-color: #F7F9FC;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    color: #1A202C;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+}
+
+/* Header */
+header {
+    background-color: #FFFFFF;
+    padding: 24px 40px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 1.75rem;
+    margin: 0 0 16px 0;
+}
+
+header nav a {
+    color: #4A5568;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 24px;
+    transition: color 0.2s;
+}
+
+header nav a:hover {
+    color: #2B6CB0;
+}
+
+header nav .btn-add {
+    background-color: #2B6CB0;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    margin-right: 0;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+header nav .btn-add:hover {
+    background-color: #2C5282;
+    color: #FFFFFF;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    margin-bottom: 48px;
+}
+
+/* Filter Form */
+form {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+form input, form select, form textarea, form button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #E2E8F0;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: #EDF2F7;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+}
+
+form button:hover {
+    background-color: #E2E8F0;
+}
+
+/* Add Ad Form */
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 600px;
+}
+
+.add-form h2 {
+    margin: 0 0 8px 0;
+}
+
+.add-form textarea {
+    resize: vertical;
+}
+
+.add-form button {
+    align-self: flex-start;
+    margin-top: 8px;
+    background-color: #2B6CB0;
+    color: #FFFFFF;
+}
+
+.add-form button:hover {
+    background-color: #2C5282;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.char-counter {
+    font-size: 0.85rem;
+    color: #4A5568;
+}
+
+/* Loading and errors */
+.list-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.btn-reload {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2B6CB0;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-reload:hover {
+    background-color: #2C5282;
+}
+
+.btn-reload:disabled {
+    background-color: #A0AEC0;
+    cursor: wait;
+}
+
+.load-status {
+    margin: 0;
+    color: #4A5568;
+}
+
+.load-status.error {
+    color: #C53030;
+    font-weight: 600;
+}
+
+.btn-details {
+    align-self: flex-start;
+    margin-top: 12px;
+    padding: 6px 12px;
+    border: 1px solid #2B6CB0;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    color: #2B6CB0;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-details:hover {
+    background-color: #EBF4FF;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-delete {
+    align-self: flex-start;
+    margin-top: 12px;
+    padding: 6px 12px;
+    border: 1px solid #C53030;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    color: #C53030;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #FFF5F5;
+}
+
+.storage-status {
+    margin: 0 0 16px 0;
+    color: #C53030;
+    font-weight: 600;
+}
+
+.card-description {
+    margin-top: 12px;
+}
+
+.card-badges {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Анімація появи нового оголошення: зсув згори + проявлення */
+@keyframes slideDownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card.card--new {
+    animation: slideDownFadeIn 0.6s ease-out;
+    box-shadow: 0 0 0 2px #6B46C1, 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Позначка "Нове": 3 секунди видно, потім за 1 секунду згасає */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.badge-new {
+    background-color: #6B46C1;
+    animation: fadeOut 1s ease 3s forwards;
+}
+
+/* Якщо користувач вимкнув анімації в системі - не анімуємо */
+@media (prefers-reduced-motion: reduce) {
+    .card.card--new,
+    .badge-new {
+        animation: none;
+    }
+}
+
+.badge-online {
+    background-color: #2B6CB0;
+}
+
+#listings-count {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2D3748;
+}
+
+/* SPA pages */
+.back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #2B6CB0;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.detail-page .card {
+    max-width: 700px;
+}
+
+.card--detailed h2 {
+    margin: 12px 0;
+}
+
+.form-actions .back-link {
+    margin: 8px 0 0 0;
+}
+
+.not-found {
+    padding: 48px 0;
+}
+
+.not-found a {
+    color: #2B6CB0;
+    font-weight: 500;
+}
+
+.card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card h3 a:hover {
+    color: #2B6CB0;
+    text-decoration: underline;
+}
+
+header nav a.active {
+    color: #2B6CB0;
+    font-weight: 600;
+}
+
+header nav a.btn-add.active {
+    color: #FFFFFF;
+    background-color: #2C5282;
+}
+
+/* Cards Grid */
+.cards-grid {
+    display: grid;
+    gap: 32px;
+}
+
+.card {
+    background-color: #FFFFFF;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    /* Рамка нового оголошення плавно зникає разом з позначкою */
+    transition: box-shadow 1s ease;
+}
+
+.card h3 {
+    margin: 12px 0;
+    font-size: 1.25rem;
+}
+
+.card p {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+/* Badges */
+.badge {
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.badge-items { 
+    background-color: #2F855A;
+} 
+
+.badge-services { 
+    background-color: #C53030;
+} 
+
+.badge-animals {
+    background-color: #9C4221;
+}
+
+.ad-date {
+    display: block;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: #4A5568;
+}
+
+/* Details and Footer */
+aside#ad-details {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 32px;
+    background-color: #EDF2F7;
+    border-radius: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: #4A5568;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+header nav a {
+    margin-right: 0;
+}
+
+.cards-grid {
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 600px) {
+    header nav {
+        flex-direction: row;
+    }
+    header nav a {
+        margin-right: 24px;
+    }
+    header nav .btn-add {
+        margin-right: 0;
+    }
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    header h1 {
+        margin-bottom: 0;
+    }
+    header nav {
+        margin-top: 0;
+    }
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.outdated {
+    opacity: 0.6;
+    filter: grayscale(80%);
+    border: 1px dashed #A0AEC0;
+}
